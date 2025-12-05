@@ -9,9 +9,18 @@ class CustomerController extends Controller
 {
     public function index()
 {
-    $customers = Customer::paginate(10);
+    $query = Customer::query();
 
-    return view('customers.index', compact('customers'));
+    if ($search = request('search')) {
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%");
+        });
+    }
+
+    $customers = $query->paginate(10)->withQueryString();
+
+    return view('customers.index', compact('customers', 'search'));
 }
 
 

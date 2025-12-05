@@ -13,10 +13,19 @@ class OrderController extends Controller
      */
     public function index()
 {
-    $orders = Order::with('customer')->paginate(10);
+    $query = Order::with('customer');
 
-    return view('orders.index', compact('orders'));
+    if ($status = request('status')) {
+        $query->where('status', $status);
+    }
+
+    $orders = $query->paginate(10)->withQueryString();
+
+    $statuses = ['pending', 'completed', 'cancelled'];
+
+    return view('orders.index', compact('orders', 'statuses', 'status'));
 }
+
 
 
     /**

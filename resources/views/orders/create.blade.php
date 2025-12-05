@@ -42,10 +42,21 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Status</label>
-                <input type="text" name="status" class="form-control @error('status') is-invalid @enderror" value="{{ old('status', 'pending') }}">
-                @error('status') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
+    <label class="form-label">Status</label>
+    <select name="status" class="form-control @error('status') is-invalid @enderror">
+        @php
+            $statuses = ['pending', 'completed', 'cancelled'];
+            $current = old('status', 'pending');
+        @endphp
+        @foreach($statuses as $s)
+            <option value="{{ $s }}" {{ $current === $s ? 'selected' : '' }}>
+                {{ ucfirst($s) }}
+            </option>
+        @endforeach
+    </select>
+    @error('status') <div class="invalid-feedback">{{ $message }}</div> @enderror
+</div>
+
 
             <div class="mb-3">
                 <label class="form-label">Description</label>
