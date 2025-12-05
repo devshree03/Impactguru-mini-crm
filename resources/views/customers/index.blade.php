@@ -1,6 +1,12 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Customers
+        </h2>
+    </x-slot>
 
-@section('content')
+    <!-- your page content here -->
+
 <div class="container">
     <h1>Customers</h1>
     
@@ -46,4 +52,4 @@
         </tbody>
     </table>
 </div>
-@endsection
+</x-app-layout>

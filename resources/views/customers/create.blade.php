@@ -1,5 +1,12 @@
-@extends('layouts.app')
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Customers
+        </h2>
+    </x-slot>
+
+    <!-- your page content here -->
+
 <div class="container">
     <h1>Add Customer</h1>
     <a href="{{ route('customers.index') }}" class="btn btn-secondary mb-3">Back</a>
@@ -29,4 +36,4 @@
         <button type="submit" class="btn btn-primary">Save Customer</button>
     </form>
 </div>
-@endsection
+</x-app-layout>
