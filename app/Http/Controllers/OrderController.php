@@ -12,12 +12,12 @@ class OrderController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        // Load orders with their customers
-        $orders = Order::with('customer')->get();
+{
+    $orders = Order::with('customer')->paginate(10);
 
-        return view('orders.index', compact('orders'));
-    }
+    return view('orders.index', compact('orders'));
+}
+
 
     /**
      * Show the form for creating a new resource.
