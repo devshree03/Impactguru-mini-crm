@@ -14,5 +14,11 @@ class Customer extends Model
         'email',
         'phone',
         'address',
+        'profile_image',
     ];
+    public function orders()
+{
+    return $this->hasMany(Order::class);
+}
+
 }

@@ -9,7 +9,7 @@
         <h1>Edit Customer</h1>
         <a href="{{ route('customers.index') }}" class="btn btn-secondary mb-3">Back</a>
 
-        <form method="POST" action="{{ route('customers.update', $customer) }}">
+        <form method="POST" action="{{ route('customers.update', $customer) }}"enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -39,6 +39,15 @@
                 <textarea name="address" class="form-control @error('address') is-invalid @enderror">{{ old('address', $customer->address) }}</textarea>
                 @error('address') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
+<div class="mb-3">
+    <label class="form-label">Profile Image</label>
+    <input type="file" name="profile_image" class="form-control @error('profile_image') is-invalid @enderror">
+    @error('profile_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
+@if($customer->profile_image)
+    <p>Current: <img src="{{ asset('storage/'.$customer->profile_image) }}" width="80"></p>
+@endif
+
+</div>
 
             <button type="submit" class="btn btn-primary">Update Customer</button>
         </form>

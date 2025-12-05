@@ -4,6 +4,10 @@
             Customer Details
         </h2>
     </x-slot>
+@if($customer->profile_image)
+    <img src="{{ asset('storage/'.$customer->profile_image) }}" width="120" class="mb-3">
+@endif
+
 
     <div class="container">
         <h1>{{ $customer->name }}</h1>

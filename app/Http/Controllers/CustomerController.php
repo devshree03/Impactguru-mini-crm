@@ -28,13 +28,22 @@ class CustomerController extends Controller
         }
         
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:customers',
-            'phone' => 'required|string|max:15',
-            'address' => 'required|string',
-        ]);
+    'name' => 'required|string|max:255',
+    'email' => 'required|email|unique:customers',
+    'phone' => 'required|string|max:15',
+    'address' => 'required|string',
+    'profile_image' => 'nullable|image|max:2048',
+]);
 
-        Customer::create($request->all());
+
+        $data = $request->only(['name','email','phone','address']);
+
+if ($request->hasFile('profile_image')) {
+    $data['profile_image'] = $request->file('profile_image')->store('profiles', 'public');
+}
+
+Customer::create($data);
+
         return redirect()->route('customers.index')->with('success', 'Customer created!');
     }
 
@@ -62,9 +71,16 @@ class CustomerController extends Controller
             'email' => 'required|email|unique:customers,email,' . $customer->id,
             'phone' => 'required|string|max:15',
             'address' => 'required|string',
+            'profile_image' => 'nullable|image|max:2048',
         ]);
 
-        $customer->update($request->all());
+        $data = $request->only(['name','email','phone','address']);
+
+if ($request->hasFile('profile_image')) {
+    $data['profile_image'] = $request->file('profile_image')->store('profiles', 'public');
+}
+
+$customer->update($data);
         return redirect()->route('customers.index')->with('success', 'Customer updated!');
     }
 

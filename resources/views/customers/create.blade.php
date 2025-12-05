@@ -11,7 +11,8 @@
     <h1>Add Customer</h1>
     <a href="{{ route('customers.index') }}" class="btn btn-secondary mb-3">Back</a>
     
-    <form method="POST" action="{{ route('customers.store') }}">
+    <form method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data">
+
         @csrf
         <div class="mb-3">
             <label class="form-label">Name</label>
@@ -33,6 +34,12 @@
             <textarea name="address" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
             @error('address') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
+<div class="mb-3">
+    <label class="form-label">Profile Image</label>
+    <input type="file" name="profile_image" class="form-control @error('profile_image') is-invalid @enderror">
+    @error('profile_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
+</div>
+
         <button type="submit" class="btn btn-primary">Save Customer</button>
     </form>
 </div>
