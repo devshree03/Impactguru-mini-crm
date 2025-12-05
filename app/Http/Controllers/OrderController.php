@@ -13,8 +13,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // Eager load the customer relationship for efficiency
+        // Load orders with their customers
         $orders = Order::with('customer')->get();
+
         return view('orders.index', compact('orders'));
     }
 
@@ -23,12 +24,13 @@ class OrderController extends Controller
      */
     public function create()
     {
-        // Simple authorization check: only administrators can create orders
+        // Only admin can create orders
         if (!auth()->user() || !auth()->user()->isAdmin()) {
             abort(403, 'Unauthorized action.');
         }
 
         $customers = Customer::all();
+
         return view('orders.create', compact('customers'));
     }
 
@@ -37,21 +39,30 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        // Simple authorization check: only administrators can store orders
+        // Only admin can store orders
         if (!auth()->user() || !auth()->user()->isAdmin()) {
             abort(403, 'Unauthorized action.');
         }
 
-        // Validate the incoming request data
         $request->validate([
-            'customer_id' => 'required|exists:customers,id',
-            'amount'      => 'required|numeric|min:0',
-            'status'      => 'required|string|max:50', // Added max length for safety
-            'description' => 'nullable|string',
+            'customer_id'  => 'required|exists:customers,id',
+            'order_number' => 'required|string|max:50',
+            'amount'       => 'required|numeric|min:0',
+            'order_date'   => 'required|date',
+            'status'       => 'required|string|max:50',
+            'description'  => 'nullable|string',
         ]);
 
-        // Create the order
-        Order::create($request->all());
+        $data = $request->only([
+            'customer_id',
+            'order_number',
+            'amount',
+            'order_date',
+            'status',
+            'description',
+        ]);
+
+        Order::create($data);
 
         return redirect()->route('orders.index')->with('success', 'Order created successfully!');
     }
@@ -61,7 +72,7 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        // Implementation for showing a specific order would go here
+        //
     }
 
     /**
@@ -69,7 +80,7 @@ class OrderController extends Controller
      */
     public function edit(string $id)
     {
-        // Implementation for showing the edit form would go here
+        //
     }
 
     /**
@@ -77,7 +88,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Implementation for updating an order would go here
+        //
     }
 
     /**
@@ -85,6 +96,6 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        // Implementation for deleting an order would go here
+        //
     }
 }

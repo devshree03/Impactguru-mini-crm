@@ -18,24 +18,30 @@
 
         <table class="table">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Customer</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
+    <tr>
+        <th>ID</th>
+        <th>Order #</th>
+        <th>Customer</th>
+        <th>Amount</th>
+        <th>Order Date</th>
+        <th>Status</th>
+    </tr>
+</thead>
+
             <tbody>
                 @forelse($orders as $order)
-                    <tr>
-                        <td>{{ $order->id }}</td>
-                        <td>{{ $order->customer->name ?? 'N/A' }}</td>
-                        <td>{{ $order->amount }}</td>
-                        <td>{{ $order->status }}</td>
-                    </tr>
-                @empty
-                    <tr><td colspan="4">No orders found.</td></tr>
-                @endforelse
+    <tr>
+        <td>{{ $order->id }}</td>
+        <td>{{ $order->order_number }}</td>
+        <td>{{ $order->customer->name ?? 'N/A' }}</td>
+        <td>{{ $order->amount }}</td>
+        <td>{{ $order->order_date }}</td>
+        <td>{{ $order->status }}</td>
+    </tr>
+@empty
+    <tr><td colspan="6">No orders found.</td></tr>
+@endforelse
+
             </tbody>
         </table>
     </div>

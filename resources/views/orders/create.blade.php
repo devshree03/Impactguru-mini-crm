@@ -22,6 +22,18 @@
                 </select>
                 @error('customer_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
+            <div class="mb-3">
+    <label class="form-label">Order Number</label>
+    <input type="text" name="order_number" class="form-control @error('order_number') is-invalid @enderror" value="{{ old('order_number') }}">
+    @error('order_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Order Date</label>
+    <input type="date" name="order_date" class="form-control @error('order_date') is-invalid @enderror" value="{{ old('order_date') }}">
+    @error('order_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
+</div>
+
 
             <div class="mb-3">
                 <label class="form-label">Amount</label>
