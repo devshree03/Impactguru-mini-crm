@@ -51,5 +51,7 @@
             @endforelse
         </tbody>
     </table>
+    {{ $customers->links() }}
+
 </div>
 </x-app-layout>
