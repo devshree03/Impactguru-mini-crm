@@ -18,10 +18,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('orders', OrderController::class);
 });
 
+Route::get('/orders/export/csv', [OrderController::class, 'exportCsv'])
+        ->name('orders.export.csv');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('dashboard');
+
+Route::get('/customers/export/csv', [\App\Http\Controllers\CustomerController::class, 'exportCsv'])
+    ->middleware('auth')
+    ->name('customers.export.csv');
+
 
 require __DIR__.'/auth.php';

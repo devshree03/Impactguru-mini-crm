@@ -13,8 +13,12 @@
         @endif
 
         @if(auth()->user()->isAdmin())
-            <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3">Add Order</a>
-        @endif
+    <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3 me-2">Add Order</a>
+    <a href="{{ route('orders.export.csv') }}" class="btn btn-outline-secondary mb-3">
+        Export Orders CSV
+    </a>
+@endif
+
 
         <table class="table">
             <thead>
