@@ -131,8 +131,7 @@ The interface uses Tailwind-based cards, tables, and a top navigation bar for a 
 ![Dashboard](screenshots/dashboard.png)
 
 ### Customers
-![Customers](screenshots/customers-list.png)
-
+![Customers](screenshots/customers-list.png)<br><br>
 
 ![Customers](screenshots/customers-list2.png)
 
