@@ -124,3 +124,18 @@ The interface uses Tailwind-based cards, tables, and a top navigation bar for a 
 - Laravel Sanctum is installed to support token-based APIs.
 - Initial API routes for customers are defined in `routes/api.php` and protected with `auth:sanctum`.
 - Token endpoint and full API consumption are partially implemented and can be completed as future enhancement.
+
+## Screenshots
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Customers
+![Customers](screenshots/customers-list.png)
+![Customers](screenshots/customers-list2.png)
+
+### Orders
+![Orders](screenshots/orders-list.png)
+
+### CSV- Download
+![CSV](screenshots/CSV-download.png)
