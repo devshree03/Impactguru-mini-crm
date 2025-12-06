@@ -60,6 +60,8 @@ php artisan serve
 
 ## Features
 
+The interface uses Tailwind-based cards, tables, and a top navigation bar for a clean, dashboard-style CRM experience.
+
 ### Authentication & Roles
 
 - Login / registration using Laravel Breeze scaffolding.
